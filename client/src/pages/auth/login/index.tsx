@@ -1,12 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import WelcomeContent from "../common/welcome-content";
 
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
+import { useState } from "react";
+import { loginUser } from "../../../api-services/users-service";
+import Cookies from "js-cookie"
 
 function LoginPage() {
-    const onFinish = (values: never) => {
-        console.log("Received values:", values);
-        // Aquí puedes manejar el registro del usuario
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const onFinish = async (values: never) => {
+        try {
+            setLoading(true);
+            const response = await loginUser(values);
+            message.success(response.message);//ERRORRRR REVISAR
+            Cookies.set("token", response.token);//ERRORRR REVISAR
+            navigate("/");
+        } catch (error: any) {
+            message.error(error.response?.data?.message || error.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -49,11 +63,11 @@ function LoginPage() {
                         <Input.Password placeholder="Escriba su contraseña" />
                     </Form.Item>
 
-                    <Button type="primary" htmlType="submit" block>
-                        Registrate
+                    <Button type="primary" htmlType="submit" block loading={loading}>
+                        Iniciar
                     </Button>
 
-                    <Link to="/register">Todavía no tienes una cuenta? Registrate</Link>
+                    <Link to="/register">¿Todavía no tienes una cuenta? Registrate</Link>
                 </Form>
             </div>
         </div>
