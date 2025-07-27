@@ -1,0 +1,23 @@
+Antes revisa si estan las dependencias , igual hay unas que no anote pero ahí mismo viene comando de instalcion 
+(te va a salir como si fuera un error y te va a sugerir instalar)
+
+
+abres dos terminales, en una estaras dentro de la carpeta client y pondras para servidor de client: npm run dev 
+
+en la otra terminal, que sera la de server (dentro de esa carpeta), pondras para servidor de server: nodemon server
+
+
+
+client:
+
+npm i antd
+npm i react-router-dom
+npm i js-cookie
+npm i cookie-parser
+
+
+
+dentro de server
+
+npm install express mongoose dotenv bcryptjs jsonwebtoken <===== ese lo use para lo de server, y se crearon los json, creo que no debes volver a ingresarlo
+npm i nodemon ó npm install -g nodemon
