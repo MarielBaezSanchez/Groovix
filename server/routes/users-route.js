@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user-model");
 const bcrypt = require("bcryptjs");
-const validateToken = require("../middleware/validate-token");
+const jwt = require("jsonwebtoken");
+const validateToken = require("../middlewares/validate-token");
 
 //registro de users
 

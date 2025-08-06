@@ -18,7 +18,7 @@ function Homepage() {
     getData();
   }, []);
   return (
-    <div className="p-6">
+    <div>
       <h1>HomePage</h1>
       <p>Welcome, {user?.name}!</p>
     </div>
