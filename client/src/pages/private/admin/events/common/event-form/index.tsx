@@ -32,7 +32,10 @@ function EventForm() {
         },
         {
             name: "Ubicación y fecha",
-            component: <LocationAndDate />
+            component: <LocationAndDate 
+            {...commonProps}
+            />
+            
         },
         {
             name: "Media",

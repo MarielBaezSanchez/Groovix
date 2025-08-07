@@ -1,6 +1,7 @@
 import { Button, Form, Input, Tag } from "antd";
 import type { EventFormStepProps } from ".";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function General({
   currentStep,
@@ -9,6 +10,7 @@ function General({
   setEventData,
 }: EventFormStepProps) {
   const [guestInputValue, setGuestInputValue] = useState("");
+  const navigate = useNavigate();
 
   const onGuestAdd = () => {
     const existingGuests = eventData.guests || [];
@@ -76,6 +78,15 @@ function General({
             </Tag>
         ))}
       </div>
+      <div className="flex gap-10 justify-between"></div>
+      <Button onClick={() => navigate("/admin/events")}
+      >Regresar</Button>
+      <Button type="primary" onClick={() => setCurrentStep(currentStep +1)}
+        disabled={!eventData.name || !eventData.description || !eventData.organizer}
+        >
+          Siguiente
+      </Button>
+
     </div>
   );
 }
