@@ -10,7 +10,7 @@ export const registerUser = async (data: never) => {
   //return response.data;
 //};
 
-
+//retuas apis
 export const loginUser = async (data: never) => { 
         const response = await axios.post("/api/users/login", data);
         return response.data;

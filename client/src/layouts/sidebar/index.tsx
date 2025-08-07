@@ -1,14 +1,35 @@
-//import MenuItems from './MenuItems';
-
-import type { UserType } from "../../interfaces";
+import { Menu } from "lucide-react";
 import MenuItems from "./menu-items";
+import { useState } from "react";
+import { Drawer } from "antd";
 
-function Sidebar({user} : {user: UserType}) {
+function Sidebar() {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   return (
-    <div className="w-60 h-full">
-        <MenuItems 
-        user={user}
+    <div>
+      <div className="lg:flex hidden h-full lg:w-full-60">
+        <MenuItems
         />
+      </div>
+
+      <div className="bg-info p-5 lg:hidden flex">
+        <Menu
+          size={20} 
+          color="white"
+          onClick={() => setShowMobileMenu(!showMobileMenu)}
+          className="cursor-pointer"
+        />
+      </div>
+
+      {showMobileMenu && (
+        <Drawer
+          open={showMobileMenu}
+          placement="left"
+          onClose={() => setShowMobileMenu(false)}
+        >
+          <MenuItems />
+        </Drawer>
+      )}
     </div>
   );
 }
