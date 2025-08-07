@@ -16,6 +16,8 @@ npm i js-cookie
 npm i cookie-parser
 
 
+npm i zustand
+
 
 dentro de server
 
