@@ -1,5 +1,5 @@
 
-import { Navigate } from 'react-router-dom'
+
 import type { EventFormStepProps } from '.'
 import { Button, Form, Input } from 'antd'
 
