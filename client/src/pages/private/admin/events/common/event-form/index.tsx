@@ -48,7 +48,7 @@ function EventForm() {
         },
         {
             name: "Tickets",
-            component: <Tickets />
+            component: <Tickets {...commonProps}/>,
         },
 
     ];

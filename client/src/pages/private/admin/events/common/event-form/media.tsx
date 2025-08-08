@@ -53,16 +53,8 @@ function Media({
         ))}
       </div>
       <div className="flex justify-between col-span-3" >
-        <Button
-          onClick={() => setCurrentStep(currentStep - 1)}>
-          Regresar
-        </Button>
-        <Button
-          type="primary"
-          onClick={() => setCurrentStep(currentStep + 1)}>
-          Siguiente 
-        </Button>
-        
+        <Button onClick={() => setCurrentStep(currentStep - 1)}> Regresar </Button>
+        <Button type="primary" onClick={() => setCurrentStep(currentStep + 1)}>Siguiente </Button>        
       </div>
     </div>
   );
