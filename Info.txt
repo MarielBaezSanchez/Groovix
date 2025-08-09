@@ -23,3 +23,7 @@ dentro de server
 
 npm install express mongoose dotenv bcryptjs jsonwebtoken <===== ese lo use para lo de server, y se crearon los json, creo que no debes volver a ingresarlo
 npm i nodemon ó npm install -g nodemon
+
+*** Se instalan las dos juntas ****
+npm i firebase
+npm i dotenv
