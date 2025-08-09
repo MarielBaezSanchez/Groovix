@@ -6,6 +6,8 @@ function Tickets({
   setCurrentStep,
   eventData,
   setEventData,
+  loading,
+  onFinish
 }: EventFormStepProps) {
   const onAddTicketType = () => {
     const newTicketTypes = eventData.ticketTypes || [];
@@ -34,7 +36,8 @@ function Tickets({
   };
 
   const onTicketTypeDelete = (index: number) => {
-    const newTicketTypes = (eventData.ticketTypes || []).filter((_, i) => i !== index);
+    const newTicketTypes = eventData.ticketTypes || [];
+    newTicketTypes.splice(index, 1);
     setEventData({ ...eventData, ticketTypes: newTicketTypes });
   };
 
@@ -95,8 +98,8 @@ function Tickets({
         </div>
       )}
       <div className="flex justify-between col-span-3" >
-        <Button onClick={() => setCurrentStep(currentStep - 1)}> Regresar </Button>
-        <Button type="primary" onClick={() => {}}>Guardar y Finalizar </Button>        
+        <Button disabled={loading} onClick={() => setCurrentStep(currentStep - 1)}> Regresar </Button>
+        <Button type="primary" onClick={onFinish} loading={loading} disabled={loading}>Guardar y Finalizar </Button>        
       </div>
     </div>
   );
