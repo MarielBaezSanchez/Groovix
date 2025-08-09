@@ -44,8 +44,9 @@ function Tickets({
   return (
     <div className="flex flex-col gap-5">
       <Button onClick={() => onAddTicketType()} className="w-max">
-        Agregar Boleto
+        Agregar Tipo de Boleto
       </Button>
+
       {eventData?.ticketTypes?.length > 0 && (
         <div>
           <div className="grid grid-cols-4 gap-5">
@@ -53,6 +54,7 @@ function Tickets({
             <span className="font-semibold">Precio</span>
             <span className="font-semibold">Limit</span>
           </div>
+
           <div className="flex flex-col gap-3">
             {eventData.ticketTypes.map((ticketType: any, index: number) => (
             <div className="grid grid-cols-4">
@@ -77,7 +79,7 @@ function Tickets({
                   })
                 }
               />
-              <Input placeholder="Limit" 
+              <Input placeholder="Limite" 
                 type="number"
                 value={ticketType.limit}
                 onChange={(e: any) =>
@@ -97,6 +99,7 @@ function Tickets({
             </div>  
         </div>
       )}
+      
       <div className="flex justify-between col-span-3" >
         <Button disabled={loading} onClick={() => setCurrentStep(currentStep - 1)}> Regresar </Button>
         <Button type="primary" onClick={onFinish} loading={loading} disabled={loading}>Guardar y Finalizar </Button>        

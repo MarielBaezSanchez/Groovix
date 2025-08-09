@@ -1,12 +1,4 @@
-//import { getStorage, ref, uploadBytes, getDownloadURL } from "cloudinary/storage";
-//import cloudinaryApp from "../config/cloudinary-config";
-//export const uploadFileAndRetunrUrl = async (file: any) => {
- //       const storage = getStorage(cloudinaryApp);
- //       const storageRef = ref(storage, `images/${file.name}`);
- //       const response = await uploadBytes(storageRef, file);
- //       const downloadURL = await uploadBytes(response.ref);
- //       return downloadURL;  
-//}
+
 
 export const uploadFileAndReturnUrl = async (file: File) => {
     const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;

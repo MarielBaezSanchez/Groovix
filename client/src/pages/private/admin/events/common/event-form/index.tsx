@@ -30,7 +30,7 @@ function EventForm() {
 
     const onFinish = async () => {
         try {
-            
+            setLoading(true);
 
             const [...urls] = await Promise.all(
                 selectedMediaFiles.map(async(file: any) => {
@@ -45,6 +45,8 @@ function EventForm() {
             message.success("Evento creado exitosamente");
         } catch (error:any) {
             message.error(error.message || "Error al crear el evento");
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -91,6 +93,7 @@ function EventForm() {
             {stepsData.map((step, index) => (
                 <Steps.Step key={index} title={step.name} 
                 className="text-xs"
+                disabled={index > currentStep}
                 />
             ))}
         </Steps>

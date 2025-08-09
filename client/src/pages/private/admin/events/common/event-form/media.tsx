@@ -30,7 +30,8 @@ function Media({
           Click aqui para cargar imagen
         </span>
       </Upload>
-      <div className="flex flex-wrap-5">
+
+      <div className="flex flex-wrap gap-5 mt-5">
         {selectedMediaFiles.map((file: any, index: any) => (
           <div
             className="border p-3 border-solid border-gray-200 flex flex-col gap-5"
@@ -52,6 +53,8 @@ function Media({
           </div>
         ))}
       </div>
+
+      
       <div className="flex justify-between col-span-3" >
         <Button onClick={() => setCurrentStep(currentStep - 1)}> Regresar </Button>
         <Button type="primary" onClick={() => setCurrentStep(currentStep + 1)}>Siguiente </Button>        
