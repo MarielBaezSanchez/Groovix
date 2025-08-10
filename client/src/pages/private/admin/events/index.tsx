@@ -2,7 +2,7 @@ import { Button, message, Table } from "antd";
 import PageTitle from "../../../../components/page-title";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getEvents } from "../../../../api-services/events-service";
+import { deleteEvent, getEvents } from "../../../../api-services/events-service";
 import { getDateTimeFormat } from "../../../../helpers/data-time-formats";
 import { Pen, Trash2 } from "lucide-react";
 
@@ -22,7 +22,20 @@ function EventsPage() {
     } finally {
       setLoading(false)
     }
-  }
+  };
+
+  const deleteEventHandler = async (id: string) => {
+    try {
+      setLoading(true);
+      await deleteEvent(id);
+      getData();
+      message.success("Evento eliminado correctamente");
+    } catch (error) {
+      message.error("Falla al eliminar el evento");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     getData();
@@ -57,7 +70,7 @@ function EventsPage() {
       dataIndex: "actions",
       render: (text: any, record: any) => (
         <div className="flex gap-5">
-          <Trash2 className="cursor-pointer text-red-700" size={16}/>
+          <Trash2 className="cursor-pointer text-red-700" size={16} onClick={() => deleteEventHandler(record._id)}/>
           <Pen className="cursor-pointer text-yellow-600" size={16} onClick={() =>navigate(`/admin/events/edit/${record._id}`)}/>
         </div>
       )

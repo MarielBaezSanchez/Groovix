@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const createEvent = async (data: any) => {
-    const response:any = axios.post("/api/events/create-event", data);
+    const response: any = axios.post("/api/events/create-event", data);
     return response.data;
 }
 
@@ -16,6 +16,11 @@ export const getEventById = async (id: string) => {
 }
 
 export const updateEvent = async (id: string, data: any) => {
-  const response: any = await axios.put(`/api/events/edit-event/${id}`, data);
-  return response.data;
+    const response: any = await axios.put(`/api/events/edit-event/${id}`, data);
+    return response.data;
+};
+
+export const deleteEvent = async (id: string) => {
+    const response: any = await axios.delete(`/api/events/delete-event/${id}`);
+    return response.data;
 };
