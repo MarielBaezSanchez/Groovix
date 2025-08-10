@@ -46,7 +46,7 @@ function PrivateLayout({ children }: { children: React.ReactNode }) {
         currentUser && (
         <div className="flex lg:flex-row flex-col gap-5 h-screen">
             <Sidebar />
-            <div className="flex-1 px-5 lg:mt-10 pb-10">{children}</div>
+            <div className="flex-1 px-5 lg:mt-10 pb-10 overflow-y-scroll">{children}</div>
         </div>
         )
     );

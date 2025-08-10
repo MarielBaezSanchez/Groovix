@@ -11,6 +11,11 @@ export const getEvents = async () => {
 }
 
 export const getEventById = async (id: string) => {
-    const response: any = await axios.get(`/api/events/get-events/${id}`);
+    const response: any = await axios.get(`/api/events/get-event/${id}`);
     return response.data
 }
+
+export const updateEvent = async (id: string, data: any) => {
+  const response: any = await axios.put(`/api/events/edit-event/${id}`, data);
+  return response.data;
+};

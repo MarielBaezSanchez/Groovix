@@ -5,8 +5,8 @@ import Media from "./media"
 import Tickets from "./tickets"
 import { Form, message, Steps } from "antd"
 import { uploadFileAndReturnUrl } from "../../../../../../api-services/storage-service"
-import { createEvent } from "../../../../../../api-services/events-service"
-import { useNavigate } from "react-router-dom"
+import { createEvent, updateEvent } from "../../../../../../api-services/events-service"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 export interface EventFormStepProps {
@@ -32,6 +32,7 @@ function EventForm({
     const [selectedMediaFiles, setSelectedMediaFiles] = useState([]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const params:any = useParams();
 
 
     const onFinish = async () => {
@@ -44,17 +45,22 @@ function EventForm({
                 })
             );
 
-            eventData.media = urls;
+            eventData.media = [...(eventData?.media || []), ...urls];
+      if (type === "edit") {
+        await updateEvent(params.id, eventData);
+        message.success("Evento actualizado correctamente");
+      } else {
+        await createEvent(eventData);
+        message.success("Evento creado correctamente");
+      }
 
-            await createEvent(eventData);
-            navigate("/admin/events");
-            message.success("Evento creado exitosamente");
-        } catch (error:any) {
-            message.error(error.message || "Error al crear el evento");
-        } finally {
-            setLoading(false)
-        }
+      navigate("/admin/events");
+    } catch (error: any) {
+      message.error(error.message);
+    } finally {
+      setLoading(false);
     }
+  };
 
     const commonProps = {
         eventData,
