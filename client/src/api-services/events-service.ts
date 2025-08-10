@@ -1,11 +1,16 @@
 import axios from "axios";
 
-export const createEvent = async (eventData: any) => {
-    const response:any = axios.post("/api/events/create-event", eventData);
+export const createEvent = async (data: any) => {
+    const response:any = axios.post("/api/events/create-event", data);
     return response.data;
 }
 
 export const getEvents = async () => {
     const response: any = await axios.get("/api/events/get-events")
+    return response.data
+}
+
+export const getEventById = async (id: string) => {
+    const response: any = await axios.get(`/api/events/get-events/${id}`);
     return response.data
 }

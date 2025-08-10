@@ -7,6 +7,8 @@ function Media({
   setCurrentStep,
   selectedMediaFiles,
   setSelectedMediaFiles,
+  eventData,
+  setEventData,
 }: EventFormStepProps) {
   const onSelectedMediaRemove = (index: number) => {
     const existingSelectedMediaFiles = [...selectedMediaFiles];
@@ -14,21 +16,26 @@ function Media({
       (_, i) => i !== index
     );
     setSelectedMediaFiles(newSelectedMediaFiles);
-  }
+  };
+
+  const onAlreadyUploadedMediaRemove = (index: number) => {
+    const existingMediaFiles = [...eventData.media];
+    const newMediaFiles = existingMediaFiles.filter((_, i) => i !== index);
+    setEventData({ ...eventData, media: newMediaFiles });
+  };
+
   return (
     <div>
       <Upload
         listType="picture-card"
         beforeUpload={(file) => {
           setSelectedMediaFiles((prev: any) => [...prev, file]);
-          return false; // Previene la carga automática
+          return false;
         }}
         multiple
         showUploadList={false}
       >
-        <span className="text-gray-500 text-xs">
-          Click aqui para cargar imagen
-        </span>
+        <span className="text-gray-500 text-xs">Click aquí para subir imagen</span>
       </Upload>
 
       <div className="flex flex-wrap gap-5 mt-5">
@@ -42,22 +49,38 @@ function Media({
               alt="media"
               className="w-40 h-40"
             />
-            <button
-              type="button"
-              className="flex justify-center items-center mx-auto text-red-500 hover:text-red-700"
+            <span
+              className="underline text-sm text-center cursor-pointer"
               onClick={() => onSelectedMediaRemove(index)}
-              title="Remover imagen"
             >
-              <Trash2 size={30} />
-            </button>
+              Remover
+            </span>
           </div>
         ))}
       </div>
 
-      
-      <div className="flex justify-between col-span-3" >
-        <Button onClick={() => setCurrentStep(currentStep - 1)}> Regresar </Button>
-        <Button type="primary" onClick={() => setCurrentStep(currentStep + 1)}>Siguiente </Button>        
+      <div className="flex flex-wrap gap-5 mt-5">
+        {eventData?.media?.map((url: any, index: any) => (
+          <div
+            className="border p-3 border-solid border-gray-200 flex flex-col gap-5"
+            key={url}
+          >
+            <img src={url} alt="media" className="w-40 h-40" />
+            <span
+              className="underline text-sm text-center cursor-pointer"
+              onClick={() => onAlreadyUploadedMediaRemove(index)}
+            >
+              Borrar
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex justify-between col-span-3 mt-5">
+        <Button onClick={() => setCurrentStep(currentStep - 1)}>Back</Button>
+        <Button type="primary" onClick={() => setCurrentStep(currentStep + 1)}>
+          Siguiente
+        </Button>
       </div>
     </div>
   );
