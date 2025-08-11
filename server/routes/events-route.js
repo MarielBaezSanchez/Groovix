@@ -30,19 +30,20 @@ router.delete("/delete-event/:id", validateToken, async (req, res) => {
     }
 });
 
+
 router.get("/get-events", validateToken, async (req, res) => {
     try {
-        const events = await EventModel.find();
+        const events = await EventModel.find().sort({ createdAt: -1 });
         return res.json({ data: events });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
 });
 
-router.get("/get-events:id", validateToken, async (req, res) => {
+router.get("/get-event/:id", validateToken, async (req, res) => {
     try {
-        const events = await EventModel.find();
-        return res.json({ data: events });
+        const events = await EventModel.findById(req.params.id);
+        return res.json({ data: event });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }

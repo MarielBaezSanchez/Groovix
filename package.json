@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "cloudinary": "^2.7.0",
-    "zustand": "^5.0.7"
-  }
-}

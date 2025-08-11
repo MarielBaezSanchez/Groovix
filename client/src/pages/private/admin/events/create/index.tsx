@@ -6,7 +6,7 @@ function CreateEventPage() {
     <div>
         <PageTitle title="Crear Evento" />
 
-        <div className="mt-5"><EventForm /></div>
+        <div className="mt-5"><EventForm type="create" initialData={{}}/></div>
     </div>
   )
 }

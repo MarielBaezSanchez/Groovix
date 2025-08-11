@@ -12,7 +12,7 @@ const eventSchema = new mongoose.Schema({
     date : { type: String, required: true },
     time : { type: String, required: true },
     media : { type: Array, required: false, default: [] },
-    tickets : { type: Array, required: false, default: [] },
+    ticketTypes : { type: Array, required: false, default: [] },
 },
 { timestamps: true}
 );
