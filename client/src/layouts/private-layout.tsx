@@ -17,7 +17,7 @@ function PrivateLayout({ children }: { children: React.ReactNode }) {
         try {
             setLoading(true);
         const response = await getCurrentUser();
-        setCurrentUser(response.data); // ERRRRRRRRORRRRRR
+        setCurrentUser(response); 
         } catch (error: any) {
         message.error(error.response.data.message || error.message);
         } finally{
