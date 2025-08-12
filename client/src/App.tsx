@@ -44,7 +44,7 @@ function App() {
               <CreateEventPage />
             </PrivateLayout>
           } />
-          <Route path="/admin/events/edit/:id" element={
+          <Route path="/admin/events/edit-event/:id" element={
             <PrivateLayout>
               <EditEventPage />
             </PrivateLayout>

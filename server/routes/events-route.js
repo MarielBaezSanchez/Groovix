@@ -12,14 +12,18 @@ router.post("/create-event", validateToken, async (req, res) => {
     }
 });
 
-router.put("/edit-event/:id", validateToken, async (req, res) => {
+router.get("/get-event/:id", validateToken, async (req, res) => {
     try {
-        const event = await EventModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        return res.json({ message: "Evento actualizado exitosamente", event });
+        const event = await EventModel.findById(req.params.id); // ✅ variable correcta
+        if (!event) {
+            return res.status(404).json({ message: "Evento no encontrado" });
+        }
+        return res.json({ data: event }); // ✅ ya coincide el nombre
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
 });
+
 
 router.delete("/delete-event/:id", validateToken, async (req, res) => {
     try {
