@@ -2,11 +2,11 @@ import { MapPin, Timer } from "lucide-react";
 import type { EventType } from "../../../../interfaces"
 import { getDateTimeFormat } from "../../../../helpers/data-time-formats";
 import { Button } from "antd";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function EventCard({ event }: { event: EventType }) {
   const mainImage = event.media[0];
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="grid lg:grid-cols-3 grid-cols-1 border border-solid border-gray-200 items-center gap-5">
       <div className="col-span-1">
@@ -39,8 +39,7 @@ function EventCard({ event }: { event: EventType }) {
             </div>
           </div>
           <Button
-            type="primary"
-           // onClick={() => navigate(`/event/${event._id}`)}
+            type="primary" onClick={() => navigate(`/event/${event._id}`)}
           >
             Ver evento
           </Button>
