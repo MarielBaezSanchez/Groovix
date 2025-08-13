@@ -17,7 +17,10 @@ function EventsPage() {
   const getData = async () => {
     try {
       setLoading(true);
-      const response = await getEvents();
+      const response = await getEvents({
+        searchText: "",
+        date: "",
+      });
       console.log(response);
       setEvents(response.data);
     } catch (error) {

@@ -23,7 +23,7 @@ export interface EventFormStepProps {
 function EventForm({
     initialData = {},
     type = 'create',
-}:{
+}: {
     initialData?: any;
     type?: "create" | "edit";
 }) {
@@ -32,7 +32,7 @@ function EventForm({
     const [selectedMediaFiles, setSelectedMediaFiles] = useState([]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const params:any = useParams();
+    const params: any = useParams();
 
 
     const onFinish = async () => {
@@ -40,33 +40,33 @@ function EventForm({
             setLoading(true);
 
             const [...urls] = await Promise.all(
-                selectedMediaFiles.map(async(file: any) => {
+                selectedMediaFiles.map(async (file: any) => {
                     return await uploadFileAndReturnUrl(file);
                 })
             );
 
             eventData.media = [...(eventData?.media || []), ...urls];
-      if (type === "edit") {
-        await updateEvent(params.id, eventData);
-        message.success("Evento actualizado correctamente");
-      } else {
-        await createEvent(eventData);
-        message.success("Evento creado correctamente");
-      }
+            if (type === "edit") {
+                await updateEvent(params.id, eventData);
+                message.success("Evento actualizado correctamente");
+            } else {
+                await createEvent(eventData);
+                message.success("Evento creado correctamente");
+            }
 
-      navigate("/admin/events");
-    } catch (error: any) {
-      message.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+            navigate("/admin/events");
+        } catch (error: any) {
+            message.error(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const commonProps = {
         eventData,
         setEventData,
         setCurrentStep,
-        currentStep, 
+        currentStep,
         selectedMediaFiles,
         setSelectedMediaFiles,
         loading,
@@ -78,22 +78,22 @@ function EventForm({
 
         {
             name: "General",
-            component: <General {...commonProps}/>
+            component: <General {...commonProps} />
         },
         {
             name: "Ubicación y fecha",
-            component: <LocationAndDate 
-            {...commonProps}
+            component: <LocationAndDate
+                {...commonProps}
             />
-            
+
         },
         {
             name: "Media",
-            component: <Media {...commonProps}/>
+            component: <Media {...commonProps} />
         },
         {
             name: "Tickets",
-            component: <Tickets {...commonProps}/>,
+            component: <Tickets {...commonProps} />,
         },
 
     ];
@@ -101,11 +101,11 @@ function EventForm({
 
     return (<Form layout="vertical">
         <Steps current={currentStep}
-        onChange={(step) => setCurrentStep(step)}>
+            onChange={(step) => setCurrentStep(step)}>
             {stepsData.map((step, index) => (
-                <Steps.Step key={index} title={step.name} 
-                className="text-xs"
-                disabled={index > currentStep}
+                <Steps.Step key={index} title={step.name}
+                    className="text-xs"
+                    disabled={index > currentStep}
                 />
             ))}
         </Steps>
@@ -114,6 +114,7 @@ function EventForm({
 
 
     </Form>
-);}
+    );
+}
 
 export default EventForm
