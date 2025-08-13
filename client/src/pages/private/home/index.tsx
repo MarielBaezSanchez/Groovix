@@ -44,7 +44,7 @@ function Homepage() {
   return (
     <div>
       <p className="text-gray-600 text-xl font-bold">
-        Welcome, {currentUser?.name}!!!
+        ¡Bienvenido/a, {currentUser?.name}!
       </p>
 
       <Filters filters={filters} setFilters={setFilters} onFilter={getData} />

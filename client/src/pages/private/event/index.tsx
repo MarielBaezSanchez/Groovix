@@ -6,6 +6,7 @@ import type { EventType } from "../../../interfaces";
 import Spinner from "../../../components/spinner";
 import { MapPin, Timer } from "lucide-react";
 import { getDateFormat, getDateTimeFormat } from "../../../helpers/data-time-formats";
+import TicketsSelection from "./common/tickets-selection";
 
 function EventInfoPage() {
     const [eventData, setEventData] = useState<EventType | null>(null);
@@ -45,7 +46,7 @@ function EventInfoPage() {
         );
     }
 
-    return ( eventData &&
+    return (eventData &&
         <div>
             <div className="flex flex-col gap-1">
                 <h1 className="text-xl font-bold text-gray-600">{eventData?.name}</h1>
@@ -91,6 +92,10 @@ function EventInfoPage() {
                 <div className="col-span-3">
                     {renderEventProperty("Invitados", eventData.guests.join(", "))}
                 </div>
+            </div>
+
+            <div className="mt-7">
+                <TicketsSelection eventData={eventData} />
             </div>
         </div>
     )
