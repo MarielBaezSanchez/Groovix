@@ -26,6 +26,6 @@ export const loginUser = async (data: never): Promise<LoginResponse> => {
 };
 
 export const getCurrentUser = async (): Promise<UserType> => {
-        const response = await axios.get<UserType>("/api/users/current-user");
-        return response.data;
+  const response = await axios.get<{ data: UserType }>("/api/users/current-user");
+  return response.data.data;
 }

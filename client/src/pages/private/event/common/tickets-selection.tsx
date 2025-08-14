@@ -40,15 +40,25 @@ function TicketsSelection({ eventData }: { eventData: EventType }) {
           ))}
         </div>
 
-        <h1 className="text-sm text-info font-bold mt-10">Selecciona el tipo de ticket</h1>
+        <h1 className="text-sm text-info font-bold mt-10">Selecciona el total de tickets</h1>
 
-        <Input
-          type="number"
-          value={selectedTicketsCount}
-          className="w-96"
-          onChange={(e) => setSelectedTicketsCount(parseInt(e.target.value))}
-          min={1}
-          max={maxCount} />
+<Input
+  type="number"
+  value={selectedTicketsCount}
+  className="w-96"
+  onChange={(e) => {
+    const val = parseInt(e.target.value);
+    if (isNaN(val) || val < 1) {
+      setSelectedTicketsCount(1);
+    } else if (val > maxCount) {
+      setSelectedTicketsCount(maxCount);
+    } else {
+      setSelectedTicketsCount(val);
+    }
+  }}
+  min={1}
+  max={maxCount}
+/>
 
         <div className="mt-7 flex justify-between bg-gray-200 border border-solid p-3 items-center">
           <h1 className="text-xl text-gray-500 font-bold">

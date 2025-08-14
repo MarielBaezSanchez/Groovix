@@ -1,4 +1,5 @@
 export interface UserType {
+    data(data: any): unknown;
     _id: string;
     name: string;
     email: string;

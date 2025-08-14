@@ -72,7 +72,7 @@ function RegisterPage() {
           </Form.Item>
 
           <Button type="primary" htmlType="submit" block loading={loading}>
-            Registrate
+            Regístrate
           </Button>
 
           <Link to="/login">¿Ya tienes una cuenta? Inicia sesión</Link>

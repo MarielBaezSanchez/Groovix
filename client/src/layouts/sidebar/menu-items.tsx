@@ -107,6 +107,14 @@ function MenuItems() {
     },
   ];
 
+
+  console.log("MenuItems currentUser:", currentUser);
+
+  if (!currentUser) {
+    return <div>Cargando menú...</div>; // o spinner, mientras carga el usuario
+  }
+
+
   const menuToRender = currentUser?.isAdmin ? adminMenu : userMenu;
 
   const onLogout = () => {

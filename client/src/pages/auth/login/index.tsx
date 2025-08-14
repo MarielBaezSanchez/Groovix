@@ -67,7 +67,7 @@ function LoginPage() {
                         Iniciar
                     </Button>
 
-                    <Link to="/register">¿Todavía no tienes una cuenta? Registrate</Link>
+                    <Link to="/register">¿Todavía no tienes una cuenta? Regístrate</Link>
                 </Form>
             </div>
         </div>
