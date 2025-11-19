@@ -14,7 +14,7 @@ npm i antd
 npm i react-router-dom
 npm i js-cookie
 npm i cookie-parser
-
+nada mas
 
 npm i zustand
 
