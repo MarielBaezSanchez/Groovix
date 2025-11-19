@@ -10,7 +10,7 @@ import EventsPage from "./pages/private/admin/events";
 import CreateEventPage from "./pages/private/admin/events/create";
 import EditEventPage from "./pages/private/admin/events/edit";
 import EventInfoPage from "./pages/private/event"; 
-
+//hola
 function App() {
   return (
     <ThemeProvider>
@@ -30,7 +30,6 @@ function App() {
               <Homepage />
             </PrivateLayout>
           } />
-
           <Route path="/event/:id" element={
             <PrivateLayout>
               <EventInfoPage />
